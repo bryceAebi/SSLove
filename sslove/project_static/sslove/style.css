@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    list-style: none;
+    outline-width: 0;
+}
+
+body {
+    background: #eef5f5;
+    position: relative;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.ui-autocomplete {
+    background: white;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+.ui-state-focus {
+    background: #eee;
+}
+
+.ui-menu-item {
+    padding: 10px;
+    cursor: pointer;
+    border-top: 1px solid #ddd;
+}
+
+.ui-menu-item:hover {
+    background: #eee;
+}
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.text-input {
+    float: left;
+    clear: both;
+    margin-bottom: 20px;
+    width: 200px;
+}
+
+.submit-input {
+    background: #c7dfe7;
+    float: left;
+    clear: both;
+    border: 1px solid #a1c9d6;
+    width: 100px;
+}
+
+form {
+    overflow: auto;
+}
+
+nav {
+    width: 100%;
+    background: #40978e;    
+    height: 60px;
+}
+
+.account-help {
+    margin-top: 20px;
+}
+
+.logo-container {
+    display: block;
+    margin-left: 20px;
+    padding-top: 15px;
+    float: left;
+    width: 350px;
+}
+
+.logo-styleseat {
+    width: 150px;
+    height: 35px;
+    background-repeat: no-repeat;
+    background-size: 150px;
+    background-image: url('logo_dark.png');
+    float: left;
+}
+
+.logo-heart {
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-image: url('pink-heart.png');
+    float: left;
+    margin-left: 10px;
+}
+
+.nav-decoration {
+    width: 100%;
+    background: #51b8ad;
+    height: 10px;
+}
+
+.modal {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 30px;
+    margin: auto;
+    box-shadow: 0px 1px 7px #ddd;
+    overflow: auto;
+}
+
+.signup-modal {
+    margin-top: 40px;
+    width: 400px;
+}
+
+.login-modal {
+    margin-top: 40px;
+    width: 400px;
+}
+
+.profile-modal {
+    margin-top: 20px;
+    min-height: 400px;
+    width: 900px;
+}
+
+.leaderboards-modal {
+    margin-top: 20px;
+    min-height: 400px;
+    width: 900px;
+}
+
+.sendlove-modal {
+    margin-top: 40px;
+    width: 400px;
+}
+
+.left-content, .right-content {
+    width: 430px;
+    float: left;
+}
+
+.right-content {
+    margin-left: 40px;
+}
+
+.profile-love {
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.upper-rankings, .lower-rankings {
+    float: left;
+    width: 100%;
+    clear: both;
+}
+
+.ranking {
+    float: left;
+    width: 50%;
+}
+
+.nav-links {
+    float: right;
+    margin-right: 20px;
+}
+
+.nav-links li {
+    float: left;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: initial;
+}
+
+footer {
+    width: 100%;
+    height: 30px;
+    border-top: 1px solid #ccc;
+    position: fixed;
+    bottom: 0;
+    background: #eef5f5;
+}
+
+.errors li {
+    color: red;
+    background: #ffe5e5;
+    border: red 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.successes li {
+    color: #339933;
+    background: #c6ecc6;
+    border: #339933 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    resize: none;
+    float: left;
+    clear: both;
+    margin-bottom: 20px;
+    width: 378px;
+}

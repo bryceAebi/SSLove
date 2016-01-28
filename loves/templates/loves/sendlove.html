@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="modal sendlove-modal">
+        <h1>Send Some Love!</h1>
+        {% if failure_message %}
+            <ul class="errors">
+                <li>{{ failure_message }}</li>
+            </ul>
+        {% endif %}
+        {% if success_message %}
+            <ul class="successes">
+                <li>{{ success_message }}</li>
+            </ul>
+        {% endif %}
+        <form class="sendlove-form" method="post" action="{% url 'sendlove' %}">
+            {% csrf_token %}
+            <input class="text-input recipient-input" {% if username %}value="{{ username }}"{% endif %}type="text" name="username" placeholder="Recipient">
+            <input class="recipient_id" type="hidden" name="recipient_id" {% if recipient_id %}value="{{ recipient_id }}"{% endif %}>
+            <input class="sender_id" type="hidden" name="sender_id" value={{ sender_id }}>
+            <textarea class="text-area" name="message" placeholder="Write your message here...">{% if message %}{{ message }}{% endif %}</textarea>
+            <input class="submit-input" type="submit" value="Submit" />
+        </form>
+    </div>
+    <script>
+        $(document).ready(function() {
+            if ("{{ users }}") {
+                makeAutocomplete($.parseJSON('{{ users|safe }}'));
+            }
+        });
+    </script>
+{% endblock %}

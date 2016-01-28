@@ -16,11 +16,18 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from loves import views as loves_views
 from users import views as users_views
 
 urlpatterns = [
+    url(r'^login/$', users_views.custom_login),
+    url(r'^logout/$', users_views.custom_logout),
     url(r'^admin/', admin.site.urls),
     url(r'^signup/$', users_views.signup, name='signup'), 
+    url(r'^profile/(?P<fullname>[a-zA-Z0-9_]*)/$', users_views.profile, name='profile'),
+    url(r'^profile/$', users_views.profile, name='own_profile'),
+    url(r'^sendlove/$', loves_views.send_love, name='sendlove'),
+    url(r'^leaderboards/$', loves_views.leaderboards, name='leaderboards'),
     url('^', include('django.contrib.auth.urls')),
-    url(r'^profile/(?P<fullname>[a-zA-Z0-9_]+)/$', users_views.profile, name='profile'),
+    url('^$', users_views.homepage, name='homepage'),
 ]

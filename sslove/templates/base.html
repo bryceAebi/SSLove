@@ -1,24 +1,37 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
         <title>StyleSeat &hearts;</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'sslove/style.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+        <script type="text/javascript" src="{% static 'sslove/jquery-1.12.0.js' %}"></script>
+        <script type="text/javascript" src="{% static 'sslove/jquery-ui-1.11.4.custom/jquery-ui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'sslove/sendlove.js' %}"></script>
+        {% block additional_scripts %} {% endblock additional_scripts %}
     </head>
 
     <body>
         <nav>
-            <div class="logo-container">
-                <div class="logo-styleseat"></div>
+            <a class="logo-container" href="{% url 'homepage' %}">
+                <div class="logo-styleseat">
+                </div>
                 <div class="logo-heart"></div>
-            </div>
+            </a>
             {% if logged_in %}
                 <ul class="nav-links">
-                    <li>Send Love</li>
-                    <li>My Love</li>
-                    <li>Leaderboards</li>
+                    <li><a href="{% url 'sendlove' %}">Send Love</a></li>
+                    <li><a href="{% url 'own_profile' %}">My Love</a></li>
+                    <li><a href="{% url 'leaderboards' %}">Leaderboards</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
                 <ul>
+            {% else %}
+                <ul class="nav-links">
+                    <li class="sign-in"><a href="{% url 'login' %}">Sign In</a></li>
+                </ul>
             {% endif %}
-            <div class="sign-in">Sign In</div>
         </nav>
+        <div class="nav-decoration"></div>
         {% block content %}{% endblock content %}
         <footer></footer>
     </body>

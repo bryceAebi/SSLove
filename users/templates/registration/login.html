@@ -2,36 +2,39 @@
 
 {% block content %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
+<div class="modal login-modal">
+    <h1>Sign In</h1>
+    {% if errors or form.errors or not user.is_authenticated %}
+        <ul class="errors">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            {% if next %}
+                {% if user.is_authenticated %}
+                <li>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</li>
+                {% else %}
+                <li>Please login to see this page.</li>
+                {% endif %}
+            {% endif %}
+            {% if form.errors %}
+                <li>Your username and password didn't match. Please try again.</li>
+            {% endif %}
+        </ul>
     {% endif %}
-{% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input class="text-input" type="text" name="username" placeholder="Email">
+        <input class="text-input" type="password" name="password" placeholder="Password">
+        <input class="submit-input" type="submit" value="Submit" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
 
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    <div class="account-help">
+        <p>No account? <a href="{% url 'signup' %}">Sign Up</a></p>
+        <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    </div>
+</div>
 
 {% endblock %}
