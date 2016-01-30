@@ -2,8 +2,8 @@
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    list-style: none;
     outline-width: 0;
+    text-decoration: none;
 }
 
 body {
@@ -13,6 +13,7 @@ body {
 
 h1 {
     margin-bottom: 20px;
+    float: left;
 }
 
 .ui-autocomplete {
@@ -28,12 +29,14 @@ h1 {
 
 .ui-state-focus {
     background: #eee;
+    background-size: 150px;
 }
 
 .ui-menu-item {
     padding: 10px;
     cursor: pointer;
     border-top: 1px solid #ddd;
+    list-style: none;
 }
 
 .ui-menu-item:hover {
@@ -64,6 +67,7 @@ input {
 
 form {
     overflow: auto;
+    clear: both;
 }
 
 nav {
@@ -93,6 +97,18 @@ nav {
     float: left;
 }
 
+.hearts {
+    width: 35px;
+    height: 35px;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-image: url('hearts.png');
+    float: left;
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
 .logo-heart {
     width: 40px;
     height: 40px;
@@ -115,6 +131,7 @@ nav {
     border-radius: 5px;
     padding: 30px;
     margin: auto;
+    margin-bottom: 20px;
     box-shadow: 0px 1px 7px #ddd;
     overflow: auto;
 }
@@ -133,17 +150,30 @@ nav {
     margin-top: 20px;
     min-height: 400px;
     width: 900px;
+    background-repeat: no-repeat;
+    background-size: 418px;
+    background-position: 634px -34px;
+    background-image: url('pink-heart.png');
 }
 
 .leaderboards-modal {
     margin-top: 20px;
     min-height: 400px;
     width: 900px;
+    background-repeat: no-repeat;
+    background-size: 418px;
+    background-position: 634px -34px;
+    background-image: url('pink-heart.png');
 }
 
 .sendlove-modal {
     margin-top: 40px;
     width: 400px;
+}
+
+.both-content {
+    overflow: auto;
+    clear: both;
 }
 
 .left-content, .right-content {
@@ -156,15 +186,14 @@ nav {
 }
 
 .profile-love {
-    border-top: 1px solid #ddd;
-    margin-top: 10px;
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
 .upper-rankings, .lower-rankings {
     float: left;
     width: 100%;
     clear: both;
+    margin-bottom: 20px;
 }
 
 .ranking {
@@ -182,6 +211,7 @@ nav {
     color: white;
     padding: 20px;
     cursor: pointer;
+    list-style: none;
 }
 
 .nav-links a {
@@ -191,11 +221,22 @@ nav {
 
 footer {
     width: 100%;
-    height: 30px;
-    border-top: 1px solid #ccc;
+    height: 40px;
     position: fixed;
     bottom: 0;
-    background: #eef5f5;
+}
+
+.footer-content {
+    width: 960px;
+    margin: auto;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.errors {
+    clear: both;
 }
 
 .errors li {
@@ -205,6 +246,11 @@ footer {
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
+    list-style: none;
+}
+
+.successes {
+    clear: both;
 }
 
 .successes li {
@@ -214,6 +260,7 @@ footer {
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
+    list-style: none;
 }
 
 textarea {
@@ -226,4 +273,76 @@ textarea {
     clear: both;
     margin-bottom: 20px;
     width: 378px;
+    height: 70px;
+}
+
+.sender-name {
+    font-weight: bold;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.profile-love li {
+    margin-bottom: 13px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 1px 7px #ddd;
+    padding: 15px;
+    background: white;
+    width: 383px;
+    list-style: none;
+}
+
+h2 {
+    width: 417px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #ddd;
+    margin-left: 7px;
+}
+
+.profile-love a {
+    color: #40978e;
+}
+
+.creation-time {
+    float: right;
+    color: #ccc;
+    font-size: 12px;
+}
+
+.love-text {
+    clear: both;
+}
+
+.love-counts {
+    clear: both;
+    overflow: auto;
+    padding-bottom: 20px;
+}
+
+.love-counts div {
+    float: left;
+    margin-right: 20px;
+}
+
+.ranking ol{
+    position: relative;
+    left: 25px;
+}
+
+.ranking {
+    margin-bottom: 15px;
+}
+
+.ranking li {
+    padding: 3px 0;
+}
+
+.ranking a {
+    color: #40978e;
+}
+
+i {
+    position: relative;
+    right: 7px;
 }

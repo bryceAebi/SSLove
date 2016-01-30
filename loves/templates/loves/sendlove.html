@@ -2,7 +2,8 @@
 
 {% block content %}
     <div class="modal sendlove-modal">
-        <h1>Send Some Love!</h1>
+        <h1>Send Some Love! </h1>
+        <div class="hearts"></div>
         {% if failure_message %}
             <ul class="errors">
                 <li>{{ failure_message }}</li>
@@ -22,6 +23,9 @@
             <input class="submit-input" type="submit" value="Submit" />
         </form>
     </div>
+    <footer>
+        <div class="footer-content">Made by bae with &hearts; 2016</div>
+    </footer>
     <script>
         $(document).ready(function() {
             if ("{{ users }}") {

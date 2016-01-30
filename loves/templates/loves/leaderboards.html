@@ -4,26 +4,50 @@
     <div class="modal leaderboards-modal">
         <div class="upper-rankings">
             <div class="ranking">
-                <h2>Top Lovers of the Week</h2>
-                <ul>
-                </ul>
+                <h2><i class="fa fa-thumbs-up"></i> Top Lovers of the Week</h2>
+                <ol>
+                    {% for user in weekly_lovers %}
+                        <li>
+                            <a href="/profile/{{user.0.vanity}}">
+                            {{ user.0.name }}</a>: {{ user.1 }} &hearts;
+                        </li>
+                    {% endfor %}
+                </ol>
             </div>
             <div class="ranking">
-                <h2>Most Loved of the Week</h2>
-                <ul>
-                </ul>
+                <h2><i class="fa fa-thumbs-up"></i> Most Loved of the Week</h2>
+                <ol>
+                    {% for user in weekly_loved %}
+                        <li>
+                            <a href="/profile/{{user.0.vanity}}">
+                            {{ user.0.name }}</a>: {{ user.1 }} &hearts;
+                        </li>
+                    {% endfor %}
+                </ol>
             </div>
         </div>
         <div class="lower-rankings">
             <div class="ranking">
-                <h2>Top Lovers of All Time</h2>
-                <ul>
-                </ul>
+                <h2><i class="fa fa-trophy"></i> Top Lovers of All Time</h2>
+                <ol>
+                    {% for user in all_time_lovers %}
+                        <li>
+                            <a href="/profile/{{user.0.vanity}}">
+                            {{ user.0.name }}</a>: {{ user.1 }} &hearts;
+                        </li>
+                    {% endfor %}
+                </ol>
             </div>
             <div class="ranking">
-                <h2>Most Loved of All Time</h2>
-                <ul>
-                </ul>
+                <h2><i class="fa fa-trophy"></i> Most Loved of All Time</h2>
+                <ol>
+                    {% for user in all_time_loved %}
+                    <li>
+                        <a href="/profile/{{user.0.vanity}}">
+                        {{ user.0.name }}</a>: {{ user.1 }} &hearts;
+                    </li>
+                    {% endfor %}
+                </ol>
             </div>
         </div>
     </div>

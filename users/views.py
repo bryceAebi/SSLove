@@ -1,7 +1,8 @@
-from django.contrib.auth import views as auth_views
+from django.contrib.auth import views as auth_views, authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as AuthUser
 from django.core.urlresolvers import reverse
-from django.contrib.auth.views import login, logout
+from django.contrib.auth.views import logout, login as login_view
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 
@@ -14,9 +15,9 @@ def change_password(request):
 
 def custom_login(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/profile/')
+        return HttpResponseRedirect('/sendlove/')
     else:
-        return login(request)
+        return login_view(request)
 
 def custom_logout(request):
     logout(request)
@@ -24,7 +25,7 @@ def custom_logout(request):
 
 def homepage(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/profile/')
+        return HttpResponseRedirect('/sendlove/')
     else:
         return HttpResponseRedirect('/login/')
 
@@ -80,24 +81,49 @@ def signup(request):
             first_name=name_chunks[0],
             last_name=name_chunks[1],
         )
-        return HttpResponseRedirect('/profile/' + user.first_name + '_' + user.last_name)
+
+        approved_email.user = user
+        approved_email.save()
+
+        # Login
+        new_user = authenticate(
+            username=request.POST['email'],
+            password=request.POST['password'],
+        )
+        login(request, new_user)
+
+        return HttpResponseRedirect('/sendlove/')
 
 
 def profile(request, fullname=None):
     if not request.user.is_authenticated():
         return HttpResponseRedirect('%s?next=%s' % (reverse('login'), request.path))
     if fullname:
-        name_chunks = fullname.split('_')
-        users = AuthUser.objects.filter(first_name=name_chunks[0], last_name=name_chunks[1])
+        name = fullname.replace('_', ' ')
+        users = ApprovedEmail.objects.filter(name=name)
         if not users:
             raise Http404('User does not exist')
         user = users[0]
     else:
-        user = AuthUser.objects.get(id=request.user.id)
+        user = ApprovedEmail.objects.get(id=request.user.approvedemail.id)
     sent_loves = user.sent_love.order_by('-id')
+    sent_love_count = sent_loves.count()
     recieved_loves = user.recieved_love.order_by('-id')
+    recieved_love_count = recieved_loves.count()
+    if recieved_love_count == 0:
+        love_ratio = 'n/a'
+    else:
+        love_ratio =  str((1.0 * sent_love_count / recieved_love_count))[:4]
+        
     return render(
         request,
         'users/profile.html', 
-        {'sent_loves': sent_loves, 'recieved_loves': recieved_loves, 'logged_in': request.user.is_authenticated()},
+        {
+            'sent_loves': sent_loves[:35],
+            'recieved_loves': recieved_loves[:35],
+            'user': user,
+            'sent_love_count': sent_love_count,
+            'love_ratio': love_ratio,
+            'recieved_love_count': recieved_love_count,
+            'logged_in': request.user.is_authenticated()},
     )

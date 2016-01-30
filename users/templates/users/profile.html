@@ -2,36 +2,57 @@
 
 {% block content %}
     <div class="modal profile-modal">
-        <div class="left-content">
-            <h2>Recieved Love</h2>
-            <ul class="profile-love">
-                {% if recieved_loves %}
-                   {% for love in recieved_loves %}
-                       <li>
-                            {{ love.sender.first_name }} {{ love.sender.last_name }}
-                            {{ love.text }}
-                       </li>
-                   {% endfor %}
-                {% else %}
-                    <li>No one has loved you yet. Don't worry, I love you!</li>
-                {% endif %}
-            </ul>
+        <h1>{{ user.name }}</h1>
+        <div class="love-counts">
+            <div>&hearts; Sent: {{ sent_love_count }}</div>
+            <div>&hearts; Recieved: {{ recieved_love_count }}</div>
+            <div>&hearts; Ratio: {{ love_ratio }} </div>
         </div>
-        <div class="right-content">
-            <h2>Sent Love</h2>
-            <ul class="profile-love">
-                {% if sent_loves %}
-                   {% for love in sent_loves %}
-                       <li>
-
-                        <div class="">{{ love.sender.first_name }} {{ love.sender.last_name }}
-                        {{ love.text }}
-                        </li>
-                   {% endfor %}
-                {% else %}
-                    <li>You haven't loved anyone yet you scrooge!</li>
-                {% endif %}
-            </ul>
+        <div class="both-content">
+            <div class="left-content">
+                <h2>Recieved Love</h2>
+                <ul class="profile-love">
+                    {% if recieved_loves %}
+                       {% for love in recieved_loves %}
+                           <li>
+                                <div class="sender-name">
+                                    From: <a href="/profile/{{ love.sender.vanity }}">{{ love.sender.name }}</a>
+                                </div>
+                                <div class="creation-time">
+                                    {{ love.creation_time|date:"m/d/y f a" }}
+                                </div>
+                                <div class="love-text">
+                                    {{ love.text }}
+                                </div>
+                            </li>
+                       {% endfor %}
+                    {% else %}
+                        <li>No one has loved you yet. Don't worry, I love you!</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="right-content">
+                <h2>Sent Love</h2>
+                <ul class="profile-love">
+                    {% if sent_loves %}
+                       {% for love in sent_loves %}
+                           <li>
+                                <div class="sender-name">
+                                    To: <a href="/profile/{{ love.recipient.vanity }}">{{ love.recipient.name }}</a>
+                                </div>
+                                <div class="creation-time">
+                                    {{ love.creation_time|date:"m/d/y f a" }}
+                                </div>
+                                <div class="love-text">
+                                    {{ love.text }}
+                                </div>
+                            </li>
+                       {% endfor %}
+                    {% else %}
+                        <li>You haven't loved anyone yet you scrooge!</li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
 {% endblock %}
