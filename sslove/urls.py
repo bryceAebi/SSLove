@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^logout/$', users_views.custom_logout),
     url(r'^admin/', admin.site.urls),
     url(r'^signup/$', users_views.signup, name='signup'), 
-    url(r'^profile/(?P<fullname>[a-zA-Z0-9_]*)/$', users_views.profile, name='profile'),
+    url(r'^profile/(?P<fullname>[a-zA-Z0-9-_]*)/$', users_views.profile, name='profile'),
     url(r'^profile/$', users_views.profile, name='own_profile'),
     url(r'^sendlove/$', loves_views.send_love, name='sendlove'),
     url(r'^leaderboards/$', loves_views.leaderboards, name='leaderboards'),
